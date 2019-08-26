@@ -9,6 +9,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Slf4j
+/**
+ * CountDownLatchExample1:实例化一个倒计数器，count指定计数个数
+ * @author zhangxiaoxiang
+ * @date 2019/8/26
+ */
+
 public class CountDownLatchExample1 {
 
     private final static int threadCount = 200;
@@ -31,6 +37,8 @@ public class CountDownLatchExample1 {
                 }
             });
         }
+
+        //latch.await()方法要求主线程等待所有10个检查任务全部准备好才一起并行执行。
         countDownLatch.await();
         log.info("finish");
         exec.shutdown();
