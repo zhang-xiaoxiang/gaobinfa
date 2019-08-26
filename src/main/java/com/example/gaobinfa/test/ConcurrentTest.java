@@ -1,11 +1,9 @@
 package com.example.gaobinfa.test;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.*;
 
 /**
  * ConcurrentTest:代码实现并发安全测试(当然也可以使用Jmeter压力测试工具进行测试)
@@ -30,7 +28,8 @@ public class ConcurrentTest {
 
     public static void main(String[] args) throws Exception {
         //常规创建(这里使用这种方式体现线程不安全)
-        ExecutorService executorService = Executors.newCachedThreadPool();
+         ExecutorService executorService = Executors.newCachedThreadPool();
+        // ExecutorService executorService = new ScheduledThreadPoolExecutor(1, new BasicThreadFactory.Builder().namingPattern("example-schedule-pool-d%").daemon(true).build());
         //计数信号量
         final Semaphore semaphore = new Semaphore(threadTotal);
         //允许一个或多个线程等待直到在其他线程中执行的一组操作完成的同步辅助

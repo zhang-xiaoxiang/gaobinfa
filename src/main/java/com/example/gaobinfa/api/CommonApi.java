@@ -1,11 +1,11 @@
 package com.example.gaobinfa.api;
 
-        import lombok.extern.slf4j.Slf4j;
-        import org.springframework.web.bind.annotation.RequestMapping;
-        import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * CommonApi:这里模拟常用的集合类,在高并发下体现不安全的演示示例
