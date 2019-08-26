@@ -1,18 +1,14 @@
-package com.example.gaobinfa.common;
+package com.example.gaobinfa.concurrent;
 
-import com.example.gaobinfa.annoations.NotThreadSafe;
+import com.example.gaobinfa.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
+import java.util.List;
+import java.util.concurrent.*;
 
 @Slf4j
-@NotThreadSafe
-public class HashMapExample {
+@ThreadSafe
+public class CopyOnWriteArrayListExample {
 
     /**
      * 请求总数
@@ -24,7 +20,7 @@ public class HashMapExample {
      */
     public static int threadTotal = 200;
 
-    private static Map<Integer, Integer> map = new HashMap<>();
+    private static List<Integer> list = new CopyOnWriteArrayList<>();
 
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
@@ -45,11 +41,11 @@ public class HashMapExample {
         }
         countDownLatch.await();
         executorService.shutdown();
-        log.info("size:{}", map.size());
+        log.info("size:{}", list.size());
     }
 
     private static void update(int i) {
-        //没有上锁同步,线程不安全
-        map.put(i, i);
+        //这个方法是上锁了的,可以保证线程安全
+        list.add(i);
     }
 }

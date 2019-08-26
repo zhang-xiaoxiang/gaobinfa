@@ -49,6 +49,7 @@ public class HashSetExample {
     }
 
     private static void update(int i) {
+        //没有同步
         set.add(i);
     }
 }

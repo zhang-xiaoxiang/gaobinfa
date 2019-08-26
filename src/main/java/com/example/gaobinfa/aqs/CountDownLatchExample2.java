@@ -1,26 +1,26 @@
 package com.example.gaobinfa.aqs;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
-import java.util.concurrent.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
-/**
- * CyclicBarrierExample1:Java中关于线程的计数器,等待线程(循环操作)
- * 可以用于多线程计算数据，最后合并计算结果的场景(类似秋后算总账)
- * @author zhangxiaoxiang
- * @date 2019/8/13
- */
 @Slf4j
+/**
+ * CountDownLatchExample2:到哪里黑就在那里歇
+ * @author zhangxiaoxiang
+ * @date 2019/8/26
+ */
+
 public class CountDownLatchExample2 {
 
     private final static int threadCount = 200;
 
     public static void main(String[] args) throws Exception {
 
-           ExecutorService exec = Executors.newCachedThreadPool();
-        // ExecutorService exec = new ScheduledThreadPoolExecutor(threadCount, new BasicThreadFactory.Builder().namingPattern("example-schedule-pool-d%").daemon(true).build());
-
+        ExecutorService exec = Executors.newCachedThreadPool();
 
         final CountDownLatch countDownLatch = new CountDownLatch(threadCount);
 
@@ -36,7 +36,6 @@ public class CountDownLatchExample2 {
                 }
             });
         }
-        //指定等待时间
         countDownLatch.await(10, TimeUnit.MILLISECONDS);
         log.info("finish");
         exec.shutdown();

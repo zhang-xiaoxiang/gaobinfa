@@ -1,8 +1,9 @@
-package com.example.gaobinfa.common;
+package com.example.gaobinfa.synccontainer;
 
-import com.example.gaobinfa.annoations.NotThreadSafe;
+import com.example.gaobinfa.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
@@ -11,20 +12,16 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 @Slf4j
-@NotThreadSafe
-public class HashMapExample {
+@ThreadSafe
+public class CollectionsExample3 {
 
-    /**
-     * 请求总数
-     */
+    // 请求总数
     public static int clientTotal = 5000;
 
-    /**
-     * 同时并发执行的线程数
-     */
+    // 同时并发执行的线程数
     public static int threadTotal = 200;
 
-    private static Map<Integer, Integer> map = new HashMap<>();
+    private static Map<Integer, Integer> map = Collections.synchronizedMap(new HashMap<>());
 
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
@@ -49,7 +46,6 @@ public class HashMapExample {
     }
 
     private static void update(int i) {
-        //没有上锁同步,线程不安全
         map.put(i, i);
     }
 }

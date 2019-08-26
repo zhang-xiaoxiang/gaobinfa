@@ -1,14 +1,14 @@
-package com.example.gaobinfa.common.concurrent;
+package com.example.gaobinfa.concurrent;
 
 import com.example.gaobinfa.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.*;
 
 @Slf4j
 @ThreadSafe
-public class ConcurrentHashMapExample {
+public class ConcurrentSkipListSetExample {
 
     /**
      * 请求总数
@@ -20,7 +20,7 @@ public class ConcurrentHashMapExample {
      */
     public static int threadTotal = 200;
 
-    private static Map<Integer, Integer> map = new ConcurrentHashMap<>();
+    private static Set<Integer> set = new ConcurrentSkipListSet<>();
 
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
@@ -41,10 +41,10 @@ public class ConcurrentHashMapExample {
         }
         countDownLatch.await();
         executorService.shutdown();
-        log.info("size:{}", map.size());
+        log.info("size:{}", set.size());
     }
 
     private static void update(int i) {
-        map.put(i, i);
+        set.add(i);
     }
 }

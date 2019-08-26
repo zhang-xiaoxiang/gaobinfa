@@ -50,6 +50,7 @@ public class ArrayListExample {
     }
 
     private static void update(int i) {
+        //没有上锁,这个有线程安全问题
         list.add(i);
     }
 }
