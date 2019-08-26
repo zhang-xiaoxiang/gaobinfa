@@ -11,6 +11,12 @@ import java.util.concurrent.atomic.LongAdder;
 
 @Slf4j
 @ThreadSafe
+/**
+ * AtomicExample3:LongAdder的原子操作
+ * @author zhangxiaoxiang
+ * @date 2019/8/26
+ */
+
 public class AtomicExample3 {
 
     // 请求总数
@@ -43,6 +49,7 @@ public class AtomicExample3 {
     }
 
     private static void add() {
+        //方法名字稍微变了一下
         count.increment();
     }
 }

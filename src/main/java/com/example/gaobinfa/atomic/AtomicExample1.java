@@ -11,6 +11,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
 @ThreadSafe
+/**
+ * AtomicExample1:AtomicInteger的原子操作
+ * @author zhangxiaoxiang
+ * @date 2019/8/26
+ */
+
 public class AtomicExample1 {
 
     // 请求总数
@@ -57,7 +63,7 @@ public class AtomicExample1 {
      * 对AtomicInteger对象进行+1操作
      */
     private static void add() {
-        //加一操作(这里使用的是方法进行+1,而不是++执行+1)
+        //加一操作(这里使用的是支持原子性操作的方法进行+1,而不是对象++执行+1)
         count.incrementAndGet();
         // count.getAndIncrement();
     }

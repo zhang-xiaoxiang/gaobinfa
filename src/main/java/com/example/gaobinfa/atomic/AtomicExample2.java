@@ -11,6 +11,12 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Slf4j
 @ThreadSafe
+/**
+ * AtomicExample2:AtomicLong的原子操作
+ * @author zhangxiaoxiang
+ * @date 2019/8/26
+ */
+
 public class AtomicExample2 {
 
     // 请求总数

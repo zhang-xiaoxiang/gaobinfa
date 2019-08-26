@@ -43,6 +43,9 @@ public class AtomicExample6 {
     }
 
     private static void test() {
+        //1. 比较AtomicBoolean和expect的值，如果一致，执行方法内的语句。其实就是一个if语句
+        //2. 把AtomicBoolean的值设成update         比较最要的是这两件事是一气呵成的，
+        //   这连个动作之间不会被打断，任何内部或者外部的语句都不可能在两个动作之间运行。为多线程的控制提供了解决的方案。
         if (isHappened.compareAndSet(false, true)) {
             log.info("execute");
         }
